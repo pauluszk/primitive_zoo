@@ -1,3 +1,21 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+/* @import url("https://fonts.googleapis.com/css2?family=Oswald:wght@200&display=swap"); */
+html {
+    background-color: #2d2b57;
+    /* position: relative; */
+    color: whitesmoke;
+}
+html::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0.03; /* Adjust the opacity value as needed (0.0 to 1.0) */
+    z-index: -1;
+    background-image: url("../images/bcCand.jpg");
+    background-size: cover;
+}
