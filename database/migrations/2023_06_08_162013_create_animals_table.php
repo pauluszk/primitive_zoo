@@ -16,8 +16,10 @@ return new class extends Migration
             $table->id('animal_id');
             $table->string('name', 80);
             $table->integer('class');
+            $table->foreignId('owner')->references('id')->on('users')->nullable();
             $table->timestamps();
         });
+
         Schema::table('animals', function (Blueprint $table) {
             $table->foreign('class')->references('class_id')->on('classifications');
         });

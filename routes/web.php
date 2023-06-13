@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ClassificationController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TestController;
 use Illuminate\Foundation\Application;
@@ -26,10 +27,16 @@ use Inertia\Inertia;
 //     ]);
 // });
 Route::get('/', function () {
-    return Inertia::render('Index');
+    return Inertia::render('Index', [
+        'canLogin' => Route::has('login'),
+        'canRegister' => Route::has('register'),
+    ]);
 });
 Route::get('/database', function () {
     return Inertia::render('DatabaseView');
+});
+Route::get('/species/new', function () {
+    return Inertia::render('SpeciesForm');
 });
 
 Route::get('/dashboard', function () {
@@ -41,5 +48,5 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-
+Route::get('api/classifications/getTree', [ClassificationController::class, 'getClassificationTree']);
 require __DIR__ . '/auth.php';
